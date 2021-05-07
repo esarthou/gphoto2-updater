@@ -78,46 +78,10 @@ do
 done
 }
 
-menu()
-{
-PS3='Please enter your choice: '
-options=("Install last development version"
-         "Install last stable release (${display_version})"
-				 "Quit")
-
-select opt in "${options[@]}"
-do
-    case $opt in
-        "Install last development version")
-						echo
-            echo "\"Install last development version\" selected"
-						echo
-						break
-            ;;
-        "Install last stable release (${display_version})")
-						echo
-            echo "\"Install last stable release (${display_version})\" selected"
-						echo
-						branch_libgphoto="--branch libgphoto2-${latest_stable_libgphoto_version}-release"
-						branch_gphoto="--branch gphoto2-${latest_stable_gphoto_version}-release"
-						break
-            ;;
-        "Quit")
-            exit 0
-            ;;
-        *) echo invalid option;;
-    esac
-done
-}
-
-# Display the menu if the script was called without any parameters
-# else try to parse the options
-if [ $# -eq 0 ]
-then
-    menu
-else
-    parse_options "$@"
-fi
+echo "\"Install last stable release (${display_version})\" selected"
+echo
+branch_libgphoto="--branch libgphoto2-${latest_stable_libgphoto_version}-release"
+branch_gphoto="--branch gphoto2-${latest_stable_gphoto_version}-release"
 
 echo
 echo "----------------"
